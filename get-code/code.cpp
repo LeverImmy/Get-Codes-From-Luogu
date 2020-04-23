@@ -5,13 +5,16 @@ using std::string;
 
 
 const int WIDTH = 4;
+int maxPage = 5;
+string comp = "G:\\Projects\\My-Codes-on-Luogu\\";
 string from = ".\\from-clip.bat ";
 string into = ".\\into-clip.bat ";
+string uid = "78407";
+
 string root_pre = "https://www.luogu.com.cn/record/list?user=";
 string root_suf = "&_contentOnly=1&page=";
 
-int maxPage;
-string comp, uid, num;
+string num;
 
 
 
@@ -81,9 +84,6 @@ void waitDefault() {
 
 
 int main(){
-
-    freopen("../data/info.txt", "r", stdin);
-    std::cin >> comp >> uid >> maxPage;
 
     makeDir(), openBrowser();
 
