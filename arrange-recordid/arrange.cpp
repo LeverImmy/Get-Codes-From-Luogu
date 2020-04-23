@@ -5,9 +5,10 @@ using std::string;
 
 
 const int WIDTH = 4;
+string comp = "../data/rids/";
 
 int maxPage;
-string comp, uid, num;
+string uid, num;
 std::vector <int> rids;
 
 
@@ -29,18 +30,8 @@ string itos(int _num) {
     return _res;
 }
 void selectFolder() {
-    string slh = "";
-
-    for(int i = 0, len = comp.length(), timer = 0; i < len; ++i) {
-        if(comp[i] == '\\') ++timer;
-        if(timer & 1) continue;
-        else slh.push_back(comp[i]);
-    }
-
-    string dir = slh + num + ".txt";
-    string to = slh + num + ".out";
+    string dir = comp + num + ".txt";
     freopen(dir.c_str(), "r", stdin);
-    freopen(to.c_str(), "w", stdout);
 }
 void solve() {
     string s;
@@ -69,7 +60,7 @@ void intoFile() {
 int main(){
 
     freopen("../data/info.txt", "r", stdin);
-    std::cin >> comp >> uid >> maxPage;
+    std::cin >> uid >> maxPage;
 
     for(int i = 1; i <= maxPage; ++i) {
         num = itos(i);

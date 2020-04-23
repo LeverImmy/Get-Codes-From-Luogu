@@ -11,7 +11,7 @@ string root_pre = "https://www.luogu.com.cn/record/list?user=";
 string root_suf = "&_contentOnly=1&page=";
 
 int maxPage;
-string comp = "..\\data\\rids\\", uid, num;
+string comp = "..\\data\\htmls\\", uid, num;
 
 
 
