@@ -1,19 +1,40 @@
 #include <bits/stdc++.h>
 #include <Windows.h>
-
+// #define system puts
 using std::string;
 
-int maxPage = 160;
-string dir = "G:\\Projects\\My-Codes-on-Luogu\\";
+
+const int WIDTH = 4;
+int maxPage = 5;
+string comp = "G:\\Projects\\My-Codes-on-Luogu\\";
+string from = ".\\from-clip.bat ";
+string into = ".\\into-clip.bat ";
 string uid = "78407";
 
+string root_pre = "https://www.luogu.com.cn/record/list?user=";
+string root_suf = "&_contentOnly=1&page=";
 
-string root = "https://www.luogu.com.cn/record/list?user=";
+string num;
 
 
-string record;
 
+string itos(int _num) {
+    std::stack<int> stk;
+    while(!stk.empty()) stk.pop();
+    while(_num) {
+        stk.push(_num % 10);
+        _num /= 10;
+    }
+    while(stk.size() < WIDTH)
+        stk.push(0);
 
+    string _res = "";
+    while(!stk.empty()) {
+        _res.push_back(stk.top() + '0');
+        stk.pop();
+    }
+    return _res;
+}
 void Backspace() {
 	keybd_event(8, 0, 0, 0);
 	keybd_event(8, 0, KEYEVENTF_KEYUP, 0);
@@ -32,27 +53,54 @@ void F6() {
 	keybd_event(117, 0, 0, 0);
 	keybd_event(117, 0, KEYEVENTF_KEYUP, 0);
 }
-void Left_Click() {
+void leftClick() {
     mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+}
+void makeDir() {
+    string dir = "md " + comp;
+    system(dir.c_str());
+}
+void waitLong() {
+    Sleep(2000);
 }
 void openBrowser() {
 
+    waitLong();
+}
+void pasteRecord() {
+    string dir = from + comp + num + ".txt";
+    system(dir.c_str());
 }
 void pasteUrl() {
-    
+    string dir = into + "\"" + root_pre + uid + root_suf + num + "\"";
+    system(dir.c_str());
+    Ctrl('V');
 }
-void Wait() {
+void waitDefault() {
 	Sleep(700);
 }
 
+
+
+
 int main(){
 
-    record = root + uid;
-
+    makeDir();
     openBrowser();
 
     for(int i = 1; i <= maxPage; ++i) {
+        num = itos(i);
+        F6();
+        pasteUrl(), waitDefault();
+        Enter(), waitDefault();
+        leftClick();
+        Ctrl('A'), waitDefault();
+        Ctrl('C'), waitDefault();
+        pasteRecord();
 
+        F6();
+        Ctrl('A'), waitDefault();
+        Backspace(), waitDefault();
     }
 
     return 0;
