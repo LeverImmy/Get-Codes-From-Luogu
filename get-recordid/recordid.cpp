@@ -77,7 +77,7 @@ void pasteUrl() {
     Ctrl('V');
 }
 void waitDefault() {
-	Sleep(700);
+	Sleep(2000);
 }
 
 
@@ -85,20 +85,18 @@ void waitDefault() {
 
 int main(){
 
-    makeDir();
-    openBrowser();
+    makeDir(), openBrowser();
 
     for(int i = 1; i <= maxPage; ++i) {
         num = itos(i);
-        F6();
         pasteUrl(), waitDefault();
         Enter(), waitDefault();
-        leftClick();
+        leftClick(), waitDefault();
         Ctrl('A'), waitDefault();
         Ctrl('C'), waitDefault();
-        pasteRecord();
+        pasteRecord(), waitDefault();
 
-        F6();
+        F6(), waitDefault();
         Ctrl('A'), waitDefault();
         Backspace(), waitDefault();
     }
