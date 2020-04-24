@@ -84,11 +84,11 @@ void openFolder() {
 
 int main() {
 
-    // freopen("../data/rid.txt", "r", stdin);
-    //
-    // while(std::cin >> __) rids.push_back(__);
+    freopen("../data/rid.txt", "r", stdin);
 
-    rids.push_back(33017148);
+    while(std::cin >> __) rids.push_back(__);
+
+    // rids.push_back(33017148);
 
     makeDir(to);
 
