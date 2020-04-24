@@ -11,7 +11,7 @@ string root_pre = "https://www.luogu.com.cn/record/";
 string root_suf = "?_contentOnly=1";
 
 int maxPage, __;
-string comp = "..\\data\\codes\\", uid, num;
+string comp = "..\\data\\tmpscrs\\", uid, num;
 std::vector <int> rids;
 
 
@@ -65,11 +65,11 @@ void openBrowser() {
     waitLong();
 }
 void pasteRecord() {
-    string dir = from + comp + num + ".cpp";
+    string dir = from + comp + num + ".txt";
     system(dir.c_str());
 }
 void pasteUrl() {
-    string dir = into + "\"" + root_pre + uid + root_suf + num + "\"";
+    string dir = into + "\"" + root_pre + num + root_suf + "\"";
     system(dir.c_str());
     Ctrl('V');
 }
@@ -82,10 +82,11 @@ void waitDefault() {
 
 int main(){
 
-    freopen("../data/rids.txt", "r", stdin);
+    freopen("../data/rid.txt", "r", stdin);
+
     while(std::cin >> __) rids.push_back(__);
 
-    openBrowser();
+    makeDir(), openBrowser();
 
     for(int i = 0; i < (int)rids.size(); ++i) {
         num = itos(rids[i]);
