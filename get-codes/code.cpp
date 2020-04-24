@@ -7,12 +7,12 @@ using std::string;
 const int WIDTH = 4;
 string from = ".\\from-clip.bat ";
 string into = ".\\into-clip.bat ";
-string root_pre = "https://www.luogu.com.cn/record/list?user=";
-string root_suf = "&_contentOnly=1&page=";
+string root_pre = "https://www.luogu.com.cn/record/";
+string root_suf = "?_contentOnly=1";
 
-int maxPage;
-string comp = "..\\data\\htmls\\", uid, num;
-
+int maxPage, __;
+string comp = "..\\data\\codes\\", uid, num;
+std::vector <int> rids;
 
 
 string itos(int _num) {
@@ -65,7 +65,7 @@ void openBrowser() {
     waitLong();
 }
 void pasteRecord() {
-    string dir = from + comp + num + ".txt";
+    string dir = from + comp + num + ".cpp";
     system(dir.c_str());
 }
 void pasteUrl() {
@@ -82,13 +82,13 @@ void waitDefault() {
 
 int main(){
 
-    freopen("../data/info.txt", "r", stdin);
-    std::cin >> uid >> maxPage;
+    freopen("../data/rids.txt", "r", stdin);
+    while(std::cin >> __) rids.push_back(__);
 
-    makeDir(), openBrowser();
+    openBrowser();
 
-    for(int i = 1; i <= maxPage; ++i) {
-        num = itos(i);
+    for(int i = 0; i < (int)rids.size(); ++i) {
+        num = itos(rids[i]);
         pasteUrl(), waitDefault();
         Enter(), waitDefault();
         leftClick(), waitDefault();
